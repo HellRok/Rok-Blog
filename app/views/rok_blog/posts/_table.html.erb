@@ -1,0 +1,29 @@
+<%= link_to 'New Post', rok_blog.new_site_post_path(@site), class: 'pure-button button-green' %>
+
+<table class="pure-table pure-table-striped full-width">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Published Date</th>
+      <th>Comments</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% posts.each do |post| %>
+      <tr>
+        <td><%= post.title %></td>
+        <td><%#= post.user.name %></td>
+        <td><%= post.published_at %></td>
+        <td><%#= post.comments.count %></td>
+        <td>
+          <%= link_to 'Edit', rok_blog.edit_post_path(post), class: 'pure-button button-orange' %>
+          <%= link_to 'Delete', post_path(post), method: :delete,
+            class: 'pure-button button-red', data: { confirm: 'Are you sure you want to delete this post?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

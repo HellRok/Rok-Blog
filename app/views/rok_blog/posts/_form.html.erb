@@ -1,0 +1,19 @@
+<%= f.input :title, input_html: { class: 'pure-input-1' } %>
+<%= f.input :slug, label: 'Permanent Link', input_html: { class: 'pure-input-1' },
+  hint: "This will be prefixed by #{@site.blog_base}" %>
+<%= f.input :layout_id, collection: @site.layouts.map,
+  include_blank: false, input_html: { class: 'pure-input-1' } %>
+<%= f.input :content, label: 'Post', input_html: { rows: 20, class: 'pure-input-1' } %>
+<%= f.input :published, input_html: { rows: 20, class: 'pure-input-1' } %>
+<%= render 'form_actions' %>
+
+<%# TODO: Implement this %>
+<% if false %>
+  <%= simple_form_for @post, url: preview_admin_posts_path, method: :post,
+    html: { class: 'pure-form preview-form', target: '_blank' } do |f| %>
+    <%= f.input :id, as: :hidden %>
+    <%= f.input :title, as: :hidden %>
+    <%= f.input :post, as: :hidden %>
+    <%= f.submit 'Preview', class: 'pure-button button-primary' %>
+  <% end %>
+<% end %>
