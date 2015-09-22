@@ -9,6 +9,7 @@ module RokBlog
     #belongs_to :user
 
     before_save :set_published_at
+    before_save :populate_path
 
     scope :published, -> { where(published: true) }
     scope :in_order, -> { order(published_at: :desc) }
@@ -35,5 +36,10 @@ module RokBlog
         'page' => RokBlog::PostDrop.new(self),
       )
     end
+
+    private
+      def populate_path
+        self.path = [site.blog_base, slug].join ('/')
+      end
   end
 end
