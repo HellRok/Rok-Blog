@@ -6,7 +6,6 @@ module RokBlog
     has_one :theme, through: :layout, class_name: 'RokCms::Theme'
     has_one :site, through: :layout, class_name: 'RokBase::Site'
     #has_many :comments
-    #belongs_to :user
 
     before_save :set_published_at
     before_save :populate_path
@@ -31,9 +30,14 @@ module RokBlog
     end
 
     def render
+      filters = RokBase::LiquidFilters
+      filters.set_site(site)
+
       Liquid::Template.parse(theme.render(layout.post)).render(
-        'site' => RokBase::SiteDrop.new(site),
-        'page' => RokBlog::PostDrop.new(self),
+        {
+          'site' => RokBase::SiteDrop.new(site),
+          'page' => RokBlog::PostDrop.new(self)
+        }, filters: [filters]
       )
     end
 
