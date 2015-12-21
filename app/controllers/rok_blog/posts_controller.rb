@@ -5,7 +5,7 @@ module RokBlog
     load_and_authorize_resource :site, class: 'RokBase::Site'
     load_and_authorize_resource class: 'RokBlog::Post', through: :site, shallow: true
     decorates_assigned :posts, :post
-    before_filter :set_site, :layout_crumbs
+    before_filter :set_site, :layout_crumbs, :stamp
 
     def index
       @posts = @posts.in_order

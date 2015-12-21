@@ -16,7 +16,7 @@
     <% posts.each do |post| %>
       <tr>
         <td><%= post.title %></td>
-        <td><%#= post.user.name %></td>
+        <td><%= post.created_by %></td>
         <td><%= post.path %></td>
         <td><%= post.published_at %></td>
         <td><%#= post.comments.count %></td>

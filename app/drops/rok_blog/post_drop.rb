@@ -21,8 +21,11 @@ module RokBlog
     end
 
     def url
-      # TODO: build this properly
-      @object.slug
+      @object.path
+    end
+
+    def published_at
+      @object.published_at.strftime('%a %D %I:%M%P')
     end
   end
 end

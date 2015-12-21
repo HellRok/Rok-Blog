@@ -3,6 +3,8 @@ module RokBlog
     include PostExtension
 
     belongs_to :layout, class_name: 'RokCms::Layout'
+    belongs_to :created_by, class_name: RokBase.user_class, foreign_key: :creator_id
+    belongs_to :updated_by, class_name: RokBase.user_class, foreign_key: :updater_id
     has_one :theme, through: :layout, class_name: 'RokCms::Theme'
     has_one :site, through: :layout, class_name: 'RokBase::Site'
     #has_many :comments
