@@ -3,7 +3,8 @@
   hint: "This will be prefixed by #{@site.blog_base}" %>
 <%= f.input :layout_id, collection: @site.layouts.map,
   include_blank: false, input_html: { class: 'pure-input-1' } %>
-<%= f.input :content, label: 'Post', input_html: { rows: 20, class: 'pure-input-1' } %>
+<%= f.input :content, label: 'Post', input_html: { class: 'pure-input-1 code-editor',
+  rows: 20, data: { mode: 'htmlmixed' }.merge(@editor_settings) } %>
 <%= f.input :published, input_html: { rows: 20, class: 'pure-input-1' } %>
 <%= render 'form_actions' %>
 
