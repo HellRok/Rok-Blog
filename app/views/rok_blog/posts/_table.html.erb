@@ -17,7 +17,7 @@
       <tr>
         <td><%= post.title %></td>
         <td><%= post.created_by %></td>
-        <td><%= post.path %></td>
+        <td><%= link_to_if post.published?, post.path, post.path %></td>
         <td><%= post.published_at %></td>
         <td><%#= post.comments.count %></td>
         <td>
